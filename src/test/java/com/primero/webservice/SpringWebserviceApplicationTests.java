@@ -1,4 +1,4 @@
-package com.primero.springwebservice;
+package com.primero.webservice;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
