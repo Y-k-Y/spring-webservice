@@ -2,6 +2,7 @@ package com.primero.webservice.web;
 
 import com.primero.webservice.PostsService;
 import com.primero.webservice.domain.posts.PostsRepository;
+import com.primero.webservice.web.dto.PostsSaveRequestDto;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

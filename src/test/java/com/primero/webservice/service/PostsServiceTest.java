@@ -3,7 +3,7 @@ package com.primero.webservice.service;
 import com.primero.webservice.PostsService;
 import com.primero.webservice.domain.posts.Posts;
 import com.primero.webservice.domain.posts.PostsRepository;
-import com.primero.webservice.web.PostsSaveRequestDto;
+import com.primero.webservice.web.dto.PostsSaveRequestDto;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;

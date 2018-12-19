@@ -1,4 +1,4 @@
-package com.primero.webservice.web;
+package com.primero.webservice.web.dto;
 
 import com.primero.webservice.domain.posts.Posts;
 import lombok.Builder;
