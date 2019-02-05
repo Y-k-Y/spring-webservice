@@ -1,4 +1,4 @@
-package com.primero.webservice;
+package com.primero.webservice.service;
 
 import com.primero.webservice.domain.posts.PostsRepository;
 import com.primero.webservice.web.dto.PostsMainResponseDto;

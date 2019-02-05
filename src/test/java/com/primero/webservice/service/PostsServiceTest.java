@@ -1,6 +1,5 @@
 package com.primero.webservice.service;
 
-import com.primero.webservice.PostsService;
 import com.primero.webservice.domain.posts.Posts;
 import com.primero.webservice.domain.posts.PostsRepository;
 import com.primero.webservice.web.dto.PostsSaveRequestDto;

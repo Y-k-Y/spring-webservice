@@ -1,6 +1,6 @@
 package com.primero.webservice.web;
 
-import com.primero.webservice.PostsService;
+import com.primero.webservice.service.PostsService;
 import com.primero.webservice.domain.posts.PostsRepository;
 import com.primero.webservice.web.dto.PostsSaveRequestDto;
 import lombok.AllArgsConstructor;

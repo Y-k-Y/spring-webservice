@@ -14,8 +14,8 @@ spring:
 ---
 spring:
   profiles: local
-  datasource:
-    data: classpath:data-h2.sql # 시작할 때 실행시킬 script
+  #datasource:
+  # data: classpath:data-h2.sql # 시작할 때 실행시킬 script
   jpa:
     show-sql: true
     hibernate:
