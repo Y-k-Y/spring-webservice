@@ -14,14 +14,12 @@ cache:
 
 script: "./gradlew clean build"
 
-# CI 실행 완료시 메일로 알람
-notifications:
-  slack: test-workspace-yk:4546F4W8JJSDW34IuJ1lGZ9W
-  email:
-    recipients:
-      - Zzzzz.co.kr@gmail.com
-
 # AWS S3와 연동
+before_deploy:
+  - zip -r spring-webservice *
+  - mkdir -p deploy
+  - mv spring-webservice.zip deploy/spring-webservice.zip
+
 deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY
@@ -30,7 +28,15 @@ deploy:
     region: ap-northeast-2
     skip_cleanup: true
     acl: public_read
+    local_dir: deploy # before_deploy에서 생성한 디렉토리
     wait-until-deployed: true
     on:
       repo: Y-k-Y/spring-webservice # Github 주소
       branch: master
+
+# CI 실행 완료시 메일로 알람
+notifications:
+  slack: test-workspace-yk:4546F4W8JJSDW34IuJ1lGZ9W
+  email:
+    recipients:
+      - Zzzzz.co.kr@gmail.com
