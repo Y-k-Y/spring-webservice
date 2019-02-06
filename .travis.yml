@@ -33,7 +33,7 @@ deploy:
       repo: Y-k-Y/spring-webservice # Github 주소
       branch: master
 
-# CI 실행 완료시 메일로 알람
+# CI 실행 완료시 알람
 notifications:
   slack: test-workspace-yk:4546F4W8JJSDW34IuJ1lGZ9W
   email:
