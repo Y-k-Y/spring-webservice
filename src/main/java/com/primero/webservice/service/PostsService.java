@@ -1,5 +1,6 @@
 package com.primero.webservice.service;
 
+import com.primero.webservice.domain.posts.Posts;
 import com.primero.webservice.domain.posts.PostsRepository;
 import com.primero.webservice.web.dto.PostsMainResponseDto;
 import com.primero.webservice.web.dto.PostsSaveRequestDto;
@@ -28,7 +29,18 @@ public class PostsService {
         return postsRepository.findAllDesc()
                     .map(PostsMainResponseDto::new)
                     .collect(Collectors.toList());
+    }
 
+    @Transactional
+    public void modify(PostsSaveRequestDto dto, Long id){
 
+        Posts posts = postsRepository.getOne(id);
+        posts.modify(dto.getTitle(), dto.getContent(), dto.getAuthor());
+    }
+
+    @Transactional
+    public void delete(Long id){
+
+        postsRepository.deleteById(id);
     }
 }

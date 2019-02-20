@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
+
 import static org.assertj.core.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
@@ -22,13 +24,13 @@ public class PostsServiceTest {
     @Autowired
     private PostsRepository postsRepository;
 
-    @After
+    //@After
     public void cleanup(){
         postsRepository.deleteAll();
     }
 
     @Test
-    public void Dto데이터가_posts테이블에_저장된다(){
+    public void savePosts(){
 
         // given
         PostsSaveRequestDto dto = PostsSaveRequestDto.builder()
@@ -45,5 +47,55 @@ public class PostsServiceTest {
         assertThat(posts.getAuthor()).isEqualTo(dto.getAuthor());
         assertThat(posts.getContent()).isEqualTo(dto.getContent());
         assertThat(posts.getTitle()).isEqualTo(dto.getTitle());
+    }
+
+    //@Test
+    //@Transactional
+    public void modifyPosts(){
+
+        // given
+        PostsSaveRequestDto dtoo = PostsSaveRequestDto.builder()
+                .author("Zzzzz.co.kr@gmail.com")
+                .content("테스트")
+                .title("테스트 타이틀")
+                .build();
+
+        postsService.save(dtoo);
+
+        // given2
+        PostsSaveRequestDto dto = PostsSaveRequestDto.builder()
+                .author("Zzzzz.co.kr@gmail.com")
+                .content("테스트")
+                .title("Test")
+                .build();
+
+        // when
+        postsService.modify(dto, 1L);
+
+        // then
+        Posts posts = postsRepository.getOne(1L);
+        assertThat(posts.getAuthor()).isEqualTo(dto.getAuthor());
+        assertThat(posts.getContent()).isEqualTo(dto.getContent());
+        assertThat(posts.getTitle()).isEqualTo(dto.getTitle());
+    }
+
+    @Test
+    public void deletePosts(){
+
+        // given
+        PostsSaveRequestDto dto = PostsSaveRequestDto.builder()
+                .author("Zzzzz.co.kr@gmail.com")
+                .content("테스트")
+                .title("테스트 타이틀")
+                .build();
+
+        postsService.save(dto);
+
+        // when
+        postsService.delete(1L);
+
+        // then
+        long cnt = postsRepository.count();
+        assertThat(cnt).isEqualTo(0);
     }
 }

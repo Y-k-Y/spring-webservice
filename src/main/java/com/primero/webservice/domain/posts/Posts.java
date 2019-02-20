@@ -29,4 +29,11 @@ public class Posts extends BaseTimeEntity{
         this.content = content;
         this.author = author;
     }
+
+    public void modify(String title, String content, String author){
+
+        this.title = title;
+        this.content = content;
+        this.author = author;
+    }
 }

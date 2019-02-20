@@ -4,10 +4,7 @@ import com.primero.webservice.service.PostsService;
 import com.primero.webservice.web.dto.PostsSaveRequestDto;
 import lombok.AllArgsConstructor;
 import org.springframework.core.env.Environment;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 
@@ -32,4 +29,10 @@ public class WebRestController {
                 .findFirst()
                 .orElse("");
     }
+
+    @PutMapping("/posts/{pNum}")
+    public void modifyPosts(@RequestBody PostsSaveRequestDto dto, @PathVariable("pNum") Long id){ postsService.modify(dto, id); }
+
+    @DeleteMapping("/posts/{pNum}")
+    public void deletePosts(@PathVariable("pNum") Long id){ postsService.delete(id); }
 }

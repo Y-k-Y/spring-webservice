@@ -19,6 +19,7 @@ spring:
   h2:
     console:
       enabled: true
+      path: /h2
 
 # 운영 환경
 ---
