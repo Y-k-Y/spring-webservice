@@ -24,7 +24,7 @@ public class PostsServiceTest {
     @Autowired
     private PostsRepository postsRepository;
 
-    //@After
+    @After
     public void cleanup(){
         postsRepository.deleteAll();
     }
@@ -49,8 +49,8 @@ public class PostsServiceTest {
         assertThat(posts.getTitle()).isEqualTo(dto.getTitle());
     }
 
-    //@Test
-    //@Transactional
+    @Test
+    @Transactional
     public void modifyPosts(){
 
         // given
