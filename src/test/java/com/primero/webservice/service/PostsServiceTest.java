@@ -60,7 +60,7 @@ public class PostsServiceTest {
                 .title("테스트 타이틀")
                 .build();
 
-        postsService.save(dtoo);
+        Long id = postsService.save(dtoo);
 
         // given2
         PostsSaveRequestDto dto = PostsSaveRequestDto.builder()
@@ -70,10 +70,10 @@ public class PostsServiceTest {
                 .build();
 
         // when
-        postsService.modify(dto, 1L);
+        postsService.modify(dto, id);
 
         // then
-        Posts posts = postsRepository.getOne(1L);
+        Posts posts = postsRepository.getOne(id);
         assertThat(posts.getAuthor()).isEqualTo(dto.getAuthor());
         assertThat(posts.getContent()).isEqualTo(dto.getContent());
         assertThat(posts.getTitle()).isEqualTo(dto.getTitle());
@@ -89,10 +89,10 @@ public class PostsServiceTest {
                 .title("테스트 타이틀")
                 .build();
 
-        postsService.save(dto);
+        Long id = postsService.save(dto);
 
         // when
-        postsService.delete(1L);
+        postsService.delete(id);
 
         // then
         long cnt = postsRepository.count();
