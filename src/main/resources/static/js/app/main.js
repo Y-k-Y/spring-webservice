@@ -64,6 +64,7 @@ var main = {
         $('#rTitle').val(data.title);
         $('#rAuthor').val(data.author);
         $('#rContent').val(data.content);
+        $('.form-control[readonly]').css('backgroundColor', '#fff');
     },
     modify : function(){
         var pNum = $('#rId').val();
