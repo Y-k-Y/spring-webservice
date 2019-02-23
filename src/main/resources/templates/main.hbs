@@ -16,7 +16,7 @@
         <h1>스프링부트로 시작하는 웹 서비스 Ver.7</h1>
 
         <div class="col-md-12">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#savePostsModal">글 등록</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#savePostsModal" data-backdrop="static" data-keyboard="false">글 등록</button>
 
             <br/>
             <br/>
@@ -35,7 +35,7 @@
                 {{#each posts}}
                     <tr>
                         <td>{{id}}</td>
-                        <td class="to-read" data-toggle="modal" data-target="#readPostsModal">{{title}}</td>
+                        <td class="to-read" data-toggle="modal" data-target="#readPostsModal" data-backdrop="static" data-keyboard="false">{{title}}</td>
                         <td>{{author}}</td>
                         <td>{{modifiedDate}}</td>
                         <td hidden="hidden">{{content}}</td>

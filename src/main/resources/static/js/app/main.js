@@ -39,10 +39,8 @@ var main = {
            }
         });
 
-        $("div[id*='PostsModal']").on('mouseleave', function(){
-            if($('body').attr('class') == "modal-open" && $(this).attr('aria-hidden') == "true"){
-                $('.error-message').remove();
-            }
+        $("div[id*='PostsModal']").on('click', "button[data-dismiss = 'modal']", function(){
+            $('.error-message').remove();
         });
     },
     save : function(_this){
