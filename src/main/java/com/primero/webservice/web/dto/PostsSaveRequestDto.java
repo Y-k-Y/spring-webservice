@@ -1,18 +1,23 @@
 package com.primero.webservice.web.dto;
 
 import com.primero.webservice.domain.posts.Posts;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 public class PostsSaveRequestDto {
 
+    @NotBlank(message = "제목을 작성해주세요.")
     private String title;
+
+    @NotBlank(message = "내용을 작성해주세요.")
     private String content;
+
+    @NotBlank(message = "작성자를 작성해주세요.")
     private String author;
 
     @Builder

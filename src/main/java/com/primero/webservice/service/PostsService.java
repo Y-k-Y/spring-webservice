@@ -5,8 +5,8 @@ import com.primero.webservice.domain.posts.PostsRepository;
 import com.primero.webservice.web.dto.PostsMainResponseDto;
 import com.primero.webservice.web.dto.PostsSaveRequestDto;
 import lombok.AllArgsConstructor;
+import org.jboss.logging.Logger;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;

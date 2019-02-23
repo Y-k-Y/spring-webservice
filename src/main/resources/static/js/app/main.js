@@ -2,7 +2,7 @@ var main = {
     init : function(){
         var _this = this;
         $('#btn-save').on('click', function(){
-            _this.save();
+            _this.save(_this);
         });
 
         $('.to-read').on('click', function(){
@@ -26,14 +26,14 @@ var main = {
         });
 
         $('#btn-modify-ok').on('click', function(){
-            _this.modify();
+            _this.modify(_this);
         });
 
         $('#btn-delete').on('click', function(){
            _this.delete();
         });
     },
-    save : function(){
+    save : function(_this){
         var data = {
             title: $('#title').val(),
             author: $('#author').val(),
@@ -48,9 +48,10 @@ var main = {
         }).done(function(){
             alert('글이 등록되었습니다.');
             location.reload();
-        }).fail(function(error){
-            alert(error);
+        }).fail(function(response){
+            _this.markingErrorField(response);
         });
+
     },
     read : function(td){
         var data = {
@@ -66,7 +67,7 @@ var main = {
         $('#rContent').val(data.content);
         $('.form-control[readonly]').css('backgroundColor', '#fff');
     },
-    modify : function(){
+    modify : function(_this){
         var pNum = $('#rId').val();
         var data = {
             title: $('#rTitle').val(),
@@ -82,8 +83,8 @@ var main = {
         }).done(function(){
             alert('글이 수정되었습니다.');
             location.reload();
-        }).fail(function(error){
-            alert(error);
+        }).fail(function(response){
+            _this.markingErrorField(response);
         });
     },
     delete : function(){
@@ -99,6 +100,27 @@ var main = {
             console.log('An Exception occurred...');
             alert(error);
         });
+    },
+    markingErrorField : function (response) {
+        var errorFields = response.responseJSON.errors;
+        console.log(errorFields)
+
+        if(!errorFields){
+            alert(response.response.message);
+            return;
+        }
+
+        $('.error-message').remove();
+
+        var $field, error;
+        for(var i=0, length = errorFields.length; i<length;i++){
+            error = errorFields[i];
+            $field = $('#'+error['field']);
+
+            if($field && $field.length > 0){
+                $field.after('<span class="error-message text-small text-danger">'+error.defaultMessage+'</span>');
+            }
+        }
     }
 };
 
