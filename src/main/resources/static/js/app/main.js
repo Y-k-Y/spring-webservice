@@ -11,7 +11,6 @@ var main = {
 
         $('#btn-modify').on('click', function(){
             $('#rTitle').attr('readonly', null);
-            $('#rAuthor').attr('readonly', null);
             $('#rContent').attr('readonly', null);
             $('#modal-footer-normal').attr('hidden', 'true');
             $('#modal-footer-modify').attr('hidden', null);
@@ -19,7 +18,6 @@ var main = {
 
         $('#btn-modify-cancel').on('click', function(){
             $('#rTitle').attr('readonly', 'true');
-            $('#rAuthor').attr('readonly', 'true');
             $('#rContent').attr('readonly', 'true');
             $('#modal-footer-normal').attr('hidden', null);
             $('#modal-footer-modify').attr('hidden', 'true');
@@ -68,6 +66,7 @@ var main = {
         $('.form-control[readonly]').css('backgroundColor', '#fff');
     },
     modify : function(_this){
+        var fn = this.modify['name'];
         var pNum = $('#rId').val();
         var data = {
             title: $('#rTitle').val(),
@@ -84,7 +83,7 @@ var main = {
             alert('글이 수정되었습니다.');
             location.reload();
         }).fail(function(response){
-            _this.markingErrorField(response);
+            _this.markingErrorField(response, fn);
         });
     },
     delete : function(){
@@ -101,9 +100,8 @@ var main = {
             alert(error);
         });
     },
-    markingErrorField : function (response) {
+    markingErrorField : function (response, fn) {
         var errorFields = response.responseJSON.errors;
-        console.log(errorFields)
 
         if(!errorFields){
             alert(response.response.message);
@@ -112,13 +110,27 @@ var main = {
 
         $('.error-message').remove();
 
-        var $field, error;
-        for(var i=0, length = errorFields.length; i<length;i++){
-            error = errorFields[i];
-            $field = $('#'+error['field']);
+        if(fn == 'modify'){
+            var $field, error;
+            for(var i=0, length = errorFields.length; i<length;i++){
+                error = errorFields[i];
 
-            if($field && $field.length > 0){
-                $field.after('<span class="error-message text-small text-danger">'+error.defaultMessage+'</span>');
+                $field = $('#r'+(error['field']).substring(0, 1).toUpperCase() + error['field'].substring(1));
+
+                if($field && $field.length > 0){
+                    $field.after('<span class="error-message text-small text-danger">'+error.defaultMessage+'</span>');
+                }
+            }
+        }else{
+            var $field, error;
+            for(var i=0, length = errorFields.length; i<length;i++){
+                error = errorFields[i];
+
+                $field = $('#'+error['field']);
+
+                if($field && $field.length > 0){
+                    $field.after('<span class="error-message text-small text-danger">'+error.defaultMessage+'</span>');
+                }
             }
         }
     }
