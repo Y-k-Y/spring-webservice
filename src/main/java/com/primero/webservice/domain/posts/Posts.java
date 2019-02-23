@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Posts extends BaseTimeEntity{
 
     @Id                 // 해당 테이블의 PK 필드를 나타냄
-    @GeneratedValue(strategy = GenerationType.IDENTITY)     // PK의 생성 규칙을 나타냄냄
+    @GeneratedValue(strategy = GenerationType.IDENTITY)     // PK의 생성 규칙을 나타냄
     private Long id;
 
     @Column(length = 500, nullable = false)
