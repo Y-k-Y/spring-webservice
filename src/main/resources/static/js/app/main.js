@@ -1,12 +1,13 @@
 var main = {
     init : function(){
         var _this = this;
+        var _data = null;
         $('#btn-save').on('click', function(){
             _this.save(_this);
         });
 
         $('.to-read').on('click', function(){
-            _this.read(this);
+            _data = _this.read(this);
         });
 
         $('#btn-modify').on('click', function(){
@@ -17,10 +18,11 @@ var main = {
         });
 
         $('#btn-modify-cancel').on('click', function(){
-            $('#rTitle').attr('readonly', 'true');
-            $('#rContent').attr('readonly', 'true');
+            $('#rTitle').prop({'readonly' : 'true', 'value' : _data.title});
+            $('#rContent').prop({'readonly' : 'true', 'value' : _data.content});
             $('#modal-footer-normal').attr('hidden', null);
             $('#modal-footer-modify').attr('hidden', 'true');
+            $('.error-message').remove();
         });
 
         $('#btn-modify-ok').on('click', function(){
@@ -76,6 +78,8 @@ var main = {
         $('#rAuthor').val(data.author);
         $('#rContent').val(data.content);
         $('.form-control[readonly]').css('backgroundColor', '#fff');
+
+        return data;
     },
     modify : function(_this){
         var fn = this.modify['name'];
