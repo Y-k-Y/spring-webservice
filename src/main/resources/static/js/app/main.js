@@ -15,6 +15,7 @@ var main = {
             $('#rContent').attr('readonly', null);
             $('#modal-footer-normal').attr('hidden', 'true');
             $('#modal-footer-modify').attr('hidden', null);
+            $('#rContent').focus();
         });
 
         $('#btn-modify-cancel').on('click', function(){
