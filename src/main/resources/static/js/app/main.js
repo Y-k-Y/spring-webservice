@@ -45,6 +45,11 @@ var main = {
         $("div[id*='PostsModal']").on('click', "button[data-dismiss = 'modal']", function(){
             $('.error-message').remove();
         });
+		
+		$("button[class = 'close']").on('click', function(){
+			if($('#modal-footer-modify').prop('hidden') == false)
+				$('#btn-modify-cancel').click();
+		});
     },
     save : function(_this){
         var data = {
