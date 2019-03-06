@@ -1,8 +1,8 @@
 td.to-read{
-    /*transition: font-weight .2s ease-out;*/
+    transition: color .2s ease-out;
     cursor: pointer;
 }
 
 td.to-read:hover{
-    font-weight: bold;
+    color: cornflowerblue;
 }
